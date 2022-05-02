@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni&family=Poppins:wght@300;400&display=swap');
+        
+*{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+section{
+    width: 100%;
+}
+
+.logo{
+    padding-right: 10px;
+}
+    .logo-container{
+        display: flex;
+        justify-content: center;
+        margin-top: 2%;
+    }
+        .logo img{
+            max-width: 60px;
+            border-radius: 5px;
+        }
+
+.title h2{
+    color: black;
+    font-family: 'Libre Bodoni', serif;
+    font-size: 28px;
+}
+
+.app-name{
+    font-family: 'Libre Bodoni', serif;
+    color: white;
+    font-size: 24px;
+    padding-left: 10%;
+    padding-top: 5%;
+}
+
+.tag-line{
+    font-family: 'Libre Bodoni', serif;
+    padding-left: 10%;
+    font-size: 16px;
+    opacity: 0.8;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.tag-line span{
+    color: black;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+    overflow: hidden;
+}
+    .form-body{
+        padding-left: 3%;
+    }
+
+.image-box{
+    background-image: linear-gradient(90deg, #6258ff, #e6e3ff);
+    border-radius: 5px 0px 0px 5px;
+    min-width: 450px;
+}
+    .image-box img{
+        max-width: 500px;
+        display: flex;
+        margin-top: 2%;
+        padding-left: 10%;
+    }
+
+.game{
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+    .game-body{
+        display: flex;
+        border-radius: 5px;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+.row{
+    padding: 3% 2%;
+    margin: 2%;
+}
+
+label{
+    padding: 1% 2%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+} 
+
+input{
+    padding: 0;
+    border-radius: 5px;
+    border: 0.2px solid #e6e3ff;
+}
+select{
+    padding: 0% 2% 0% 2%;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    border: 0.2px solid #e6e3ff;
+    width: auto;
+}
+
+option {
+    font-size: 14px;
+    background-color: #ffffff;
+}
+
+    option:before {
+        content: ">";
+        font-size: 14px;
+        display: none;
+        padding-right: 10px;
+        padding-left: 5px;
+        color: #fff;
+    }
+
+        option:hover:before {
+            display: inline;
+        }
+
+.play-button{
+    display: flex;
+    justify-content: center;
+}
+
+    .play-button button{
+        padding: 2% 4%;
+        margin: 5% 2%;
+        color: white;
+        background-image: linear-gradient(120deg, #6258ff, #e6e3ff);
+        text-transform: uppercase;
+        font-weight: 550;
+        border-radius: 5px;
+        border: none;
+    }
+
+        button:hover{
+            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+            transition: 0.2s linear;
+        }  
+
+.prediction p{
+    font-weight: 400;
+}
+
+footer{
+    margin-top: 3%;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 200;
+}
+
+    footer p{
+        padding-top: 0.5%;
+    }
+
+.repo{
+    display: flex;
+    justify-content: center;
+}
+
+    .repo img{
+        width: 25px;
+    }
+
+    .git{
+        padding: 5px;
+        border-radius: 5px;
+        border: 0.2px solid #e6e3ff;
+    }
+        .git:hover{
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            transition: 0.2s linear;
+        }
+
+@media screen and (max-width: 937px){
+    .image-box img{
+        max-width: 400px;
+    }
+    .image-box{
+        min-width: 250px;
+    }
+
+    .app-name{
+        font-size: 20px;
+    }
+    .tag-line, .form{
+        font-size: 14px;
+    }
+    select, option, option:before {
+        font-size: 12px;
+    }
+
+    .repo img{
+        width: 20px;
+    }
+
+    .git{
+        padding: 1%;
+        margin-bottom: 2%;
+    }
+}
+
+@media screen and (max-width: 612px){
+    .image-box, .logo img{
+        display: none;
+    }
+
+    .special-col{
+        margin-top: 4%;
+    }
+
+    .form{
+        margin-top: 10%;
+    }
+
+    .title h2{
+        font-size: 24px;
+        color: white;
+        padding-top: 10px;
+    }
+
+    .game{
+        margin-top: 0;
+        position: relative;
+        bottom: 20px;
+    }
+
+        .game-body{
+            border-radius: 15px;
+            height: 100%;
+            box-shadow: white 0px 0px 0px;
+            width: 100%;
+        }
+
+    .logo-container{
+        margin-top: 0;
+        background-image: linear-gradient(120deg, #6258ff, #e6e3ff);
+        height: 80px;
+    }
+
+    .play-button button{
+        margin-top: 15%;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,28 @@
+{% extends "layout.html" %} 
+{% block link%} 
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/prediction.css')}}">
+{% endblock %}
+
+{% block body %}
+                <div class="form preddiction-container">
+                    <form action="" method="">
+                        <div class="profile-image">
+                            <!-- <div class="image-div"> -->
+                                <img src="{{prediction_value[0]}}" alt="profile-image">
+                            <!-- </div> -->
+                        </div>
+                        <div class="prediction-text">
+                            <div class="celeb name">
+                                <p>{{prediction_value[1]}}</p>
+                            </div>
+                            <div class="celeb category">
+                                <p>{{prediction_value[2]}}</p>
+                            </div>
+                            <div class="mobile-prediction">
+                                <p>{{text[0]}} your potential net worth is <span>${{text[1]}}million</span></p>
+                            </div>
+                            <p style="font-size: 16px; color: #6258ff;">As rich as {{prediction_value[1]}}!</p>
+                        </div>
+                    </form>
+                </div>
+{% endblock %}
