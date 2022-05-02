@@ -1,0 +1,49 @@
+.profile-image img{
+    width: 300px;
+    border-radius: 0px 5px 0px 0px;
+}
+
+.prediction-text{
+    margin-top: 2%;
+}
+
+    .prediction-text p{
+        text-align: center;
+        padding: 0;
+        margin: 5px 0px 0px 0px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+.mobile-prediction p {
+    color: white;
+    font-size: 0px;
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (max-width: 612px){
+    .game-body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .profile-image img{
+        max-width: 100%;
+        border-radius: 5px;
+    }
+
+    .prediction-text p {
+        font-size: 14px;
+        font-weight: 300;
+    }
+    .celeb p{
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .mobile-prediction p {
+        color: black;
+    }
+}
+
