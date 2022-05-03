@@ -1,7 +1,11 @@
-# Predictos
-## Predict your potential networth using Ai
+<h1 align='center'> Predictos </h1>
+<h2 align='center'> Predict your potential networth using Ai </h2>
 
 So I have been playing those fun `Facebook games` for a while where they say you'll get married in this year or you'll have this many kids bla bla. But noboady gives you the reason why? I think these are pretty random. So thought of building a fun game using `Machine Learning`, and provide **Data Driven** results.
+
+<p align='center'> 
+    <img alt = 'home_imge' width = 550px src = 'results/desktop_home.png'>
+</p>
 
 ----------------------------
 
