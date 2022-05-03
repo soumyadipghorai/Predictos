@@ -5,9 +5,9 @@ import jsonify
 import pandas as pd 
 
 
-df = pd.read_csv(r'end to end\predictos\data\Rich.csv')
-image_df = pd.read_csv(r'end to end\predictos\data\preprocessed_df.csv')
-model = joblib.load(open(r'end to end\predictos\random_forest_regression_model.sav', 'rb'))
+df = pd.read_csv(r'end to end\Predictos\data\Rich.csv')
+image_df = pd.read_csv(r'end to end\Predictos\data\preprocessed_df.csv')
+model = joblib.load(open(r'end to end\Predictos\random_forest_regression_model.sav', 'rb'))
 
 country_dict = {
     'United states' : 18, 'United kingdom' : 17, 'France' : 5,
