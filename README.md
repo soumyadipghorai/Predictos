@@ -1,29 +1,28 @@
-<h1 align = 'center'> Predictos : </h1> 
+# Predictos
+## Predict your potential networth using Ai
 
-<h2 align = 'center' >Predict your potential net worth using Ai</h2>
-<!-- 
-<p align = 'center' >
-    <video alt = 'home_image' width = 550px src = 'results/Personal Finance.mp4'>
-</p> -->
+So I have been playing those fun `Facebook games` for a while where they say you'll get married in this year or you'll have this many kids bla bla. But noboady gives you the reason why? I think these are pretty random. So thought of building a fun game using `Machine Learning`, and provide **Data Driven** results.
 
-<!-- ## Approach : 
+----------------------------
 
-* So Initially I have used an <code>.ipynb</code> file to do the preprocessing and do some visualization
+## Approach : 
 
-* Then I have made another file <code>finance.py</code> to implement all the functions related to preprocessing and plotting
-
-* I have imported the same file in <code>app.py</code> and used it along with streamlit to build the app.
+* I have collected data of top 100 richest persons in different fields. I have used `BeautifulSoup` to scrape [therichest.com](https://www.therichest.com/top-lists/top-100-richest).
+* after collecting the data done some data cleaning and feature engineering on raw data. 
+* fitted multiple regression model and used hyper parameter tuning to get the best result. 
+* saved the model in a `.sav` file and.
+* lated used the same model in the `flask app` 
 
 ------------------------------
 
 ## How to run? 
 
-> To run the app you need to download this repository along with the required libraries and it the command line you have to write <code>streamlit run app.py</code> to run. 
+> To run the app you need to download this repository along with the required libraries. and you have to the `app.py` file. 
 
-> it might ask for your email once...
+> after running `app.py` open [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
--------------------------------  -->
-<!-- 
+------------------------------- 
+<!--
 ## Document Structure 
 
 ```
@@ -66,10 +65,11 @@ Personal Finance
 |---- setup.sh
 
 ```
---------------------- -->
+---------------------
+-->
 ## Technologies used : 
 
-* python library - numpy, pandas, seaborn, matplotlib, plotly, sklearn, flask, bs4
+* python library - numpy, pandas, seaborn, matplotlib, flask, plotly, sklearn, joblib, bs4
 * version control - git 
 * backend - flask
 * concept - Machine Learning
