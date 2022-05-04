@@ -26,51 +26,51 @@ So I have been playing those fun `Facebook games` for a while where they say you
 > after running `app.py` open [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ------------------------------- 
-<!--
+
 ## Document Structure 
 
 ```
 Personal Finance 
 │
-|---- __pycache__
+|---- Data
+|   |-- preprocessed_df.csv
+|   |-- Rich.csv
 |
-|---- .streamlit
-|   |---- config.toml
-|
-|---- data 
-|   |---- bangalore - item.csv
-|   |---- bangalore - Total_spending.csv
-|
-|---- demo 
-|   |---- __pycache__
-|   |---- data
-|   |   |---- bangalore - item.csv
-|   |   |---- bangalore - Total_spending.csv
-|   |
-|   |---- demoapp.py
-|   |---- democalss.py
-|   |---- README.md
-|   
 |---- results
-|   |---- Personal Finance.mp4
-|   |---- Screenshot.png
+|   |-- desktop_home.png
+|   |-- desktop_prediction.png
+|   |-- mobile_home.png
+|   |-- mobile_prediction.png
 |
-|---- static
-|   |---- compressed_heroimage.gif
-|   |---- hero_image.gif
+|---- scraper 
+|   |-- webscraper.py
+|
+|---- static 
+|   |-- images
+|   |
+|
+|   |-- styles
+|   |   |-- index.css
+|   |   |-- prediction.css
+|   
+|---- templates
+|   |   |-- index.html
+|   |   |-- layout.html
+|   |   |-- prediction.html
+|
 |
 |---- app.py
-|---- exploratory_data_analysis.ipynb
-|---- finance.py
+|---- LICENSE
+|---- model_training.ipynb
 |---- markdown.py
-|---- Procfile 
+|---- random_forest_regression_model.pkl
+|---- random_forest_regression_model.sav
 |---- README.md
 |---- requirements.txt
-|---- setup.sh
 
 ```
 ---------------------
--->
+
 ## Technologies used : 
 
 * python library - numpy, pandas, seaborn, matplotlib, flask, plotly, sklearn, joblib, bs4
