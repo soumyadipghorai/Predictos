@@ -15,7 +15,7 @@ So I have been playing those fun `Facebook games` for a while where they say you
 * after collecting the data done some data cleaning and feature engineering on raw data. 
 * fitted multiple regression model and used hyper parameter tuning to get the best result. 
 * saved the model in a `.sav` file and.
-* lated used the same model in the `flask app` 
+* later used the same model in the `flask app` 
 
 ------------------------------
 
