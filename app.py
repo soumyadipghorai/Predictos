@@ -3,11 +3,13 @@ import joblib
 import sklearn 
 import jsonify
 import pandas as pd 
+import pickle
 
 
 df = pd.read_csv('data/Rich.csv')
 image_df = pd.read_csv('data/preprocessed_df.csv')
-model = joblib.load(open('random_forest_regression_model.sav', 'rb'))
+model = pickle.load(open('data/ML_models/RandomForestRegressor.pkl', 'rb'))
+scaler = pickle.load(open('data/ML_models/StandardScaler.pkl', 'rb'))
 
 country_dict = {
     'United states' : 18, 'United kingdom' : 17, 'France' : 5,
@@ -41,14 +43,14 @@ gender_dict = {
 def find_image(value, dataframe) : 
     min_diff, row_num = 99999999999, 0
     for i in range(len(dataframe)) : 
-        if abs(dataframe.net_worth.iloc[i] - value) < min_diff : 
-            min_diff = abs(dataframe.net_worth.iloc[i] - value)
+        if abs(dataframe.networth.iloc[i] - value) < min_diff : 
+            min_diff = abs(dataframe.networth.iloc[i] - value)
             row_num = i 
     name, name_text = dataframe.Name.iloc[row_num] , ''
     for word in name.split() : 
         name_text += word.capitalize() + ' '
         
-    return dataframe.image.iloc[row_num], name_text, dataframe.category.iloc[row_num].capitalize()
+    return dataframe.profile_pic.iloc[row_num], name_text, dataframe.category.iloc[row_num].capitalize()
 
 app = Flask(__name__)
 
@@ -75,7 +77,9 @@ def predict() :
         category = category_dict[category]
         gender = gender_dict[gender]
 
-        prediction = model.predict([[age, country, category, relationship, degree, gender]])
+        to_predict = scaler.transform([[country, category, relationship, degree, gender]])
+        print(to_predict)
+        prediction = model.predict(to_predict)
         print([age, country, category, relationship, degree, gender],prediction)
 
         if prediction < 0 : 

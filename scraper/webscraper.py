@@ -34,6 +34,8 @@ for count, link in enumerate(category_links) :
         else : 
             category_name_list.append(category_name)
 
+print(category_name_list)
+
 female_category = ['Actresses', 'Adult Actresses', 'Businesswomen']
 male_category = ['Actor', 'Adult Actor', 'Businessman']
 
