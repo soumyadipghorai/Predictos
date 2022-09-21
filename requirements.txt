@@ -119,7 +119,7 @@ PyQt5-sip==12.11.0
 pyrsistent==0.18.1
 python-dateutil==2.8.2
 python-dotenv==0.20.0
-python_version == 3.7
+python-version == 3.7
 pytz==2021.3
 pytz-deprecation-shim==0.1.0.post0
 pywin32==303
@@ -132,7 +132,7 @@ requests-oauthlib==1.3.1
 rsa==4.8
 s3transfer==0.5.2
 scikit-learn==1.0.2
-scipy==1.7.3
+scipy==1.6.0
 seaborn==0.11.2
 semver==2.13.0
 Send2Trash==1.8.0
