@@ -4,7 +4,7 @@
 So I have been playing those fun `Facebook games` for a while where they say you'll get married in this year or you'll have this many kids bla bla. But noboady gives you the reason why? I think these are pretty random. So thought of building a fun game using `Machine Learning`, and provide **Data Driven** results.
 
 <p align='center'> 
-    <img alt = 'home_imge' width = 550px src = 'results/desktop_home.png'>
+    <img alt = 'home_imge' width = 550px src = 'demo_image/desktop_home.png'>
 </p>
 
 ----------------------------
