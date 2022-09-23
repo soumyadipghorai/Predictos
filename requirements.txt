@@ -7,6 +7,7 @@ astunparse==1.6.3
 attrs==21.4.0
 backcall==0.2.0
 backports.zoneinfo==0.2.1
+python_version<"3.9"
 beautifulsoup4==4.11.1
 bleach==5.0.0
 blinker==1.4
@@ -118,7 +119,7 @@ PyQt5==5.15.7
 PyQt5-Qt5==5.15.2
 PyQt5-sip==12.11.0
 pyrsistent==0.18.1
-python>=3.9
+# python>=3.9
 python-dateutil==2.8.2
 python-dotenv==0.20.0
 pytz==2021.3
