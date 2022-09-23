@@ -19,6 +19,7 @@ cffi==1.15.0
 charset-normalizer==2.0.12
 click==8.0.4
 colorama==0.4.4
+commonmark==0.9.1
 cycler==0.11.0
 d3g==0.5
 debugpy==1.6.0
@@ -113,6 +114,7 @@ pydeck==0.7.1
 Pygments==2.11.2
 Pympler==1.0.1
 pyparsing==3.0.8
+pypiwin32==223
 PyQt5==5.15.7
 PyQt5-Qt5==5.15.2
 PyQt5-sip==12.11.0
@@ -121,16 +123,18 @@ python-dateutil==2.8.2
 python-dotenv==0.20.0
 pytz==2021.3
 pytz-deprecation-shim==0.1.0.post0
+pywin32==303
 pywinpty==2.0.5
 PyYAML==6.0
 pyzmq==22.3.0
 regex==2022.6.2
 requests==2.27.1
 requests-oauthlib==1.3.1
+rich==12.5.1
 rsa==4.8
 s3transfer==0.5.2
 scikit-learn==1.0.2
-scipy==1.6.0
+scipy==1.7.3
 seaborn==0.11.2
 semver==2.13.0
 Send2Trash==1.8.0
