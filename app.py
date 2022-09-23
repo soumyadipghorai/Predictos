@@ -1,63 +1,75 @@
-from flask import Flask, render_template, request 
-import joblib
-import sklearn 
-import jsonify
-import pandas as pd 
+import sys
 import pickle
+import pandas as pd 
+import numpy as np
+import logging
+from rich.logging import RichHandler
+from flask import Flask, render_template, request 
 
+FORMAT = "%(message)s"
+logging.basicConfig(
+    level="NOTSET", format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
+)  # set level=20 or logging.INFO to turn of debug
+logger = logging.getLogger("rich")
+
+
+from sklearn.preprocessing import LabelEncoder
 
 df = pd.read_csv('data/Rich.csv')
 image_df = pd.read_csv('data/preprocessed_df.csv')
-model = pickle.load(open('data/ML_models/RandomForestRegressor.pkl', 'rb'))
+model = pickle.load(open('data/ML_models/StackedModelLog.pkl', 'rb'))
 scaler = pickle.load(open('data/ML_models/StandardScaler.pkl', 'rb'))
 
-country_dict = {
-    'United states' : 18, 'United kingdom' : 17, 'France' : 5,
-    'Brazil' : 2, 'South africa' : 14, 'Others' : 12, 'Spain' : 15, 
-    'Italy' : 9, 'Australia' : 0, 'India' : 7, 'Canada' : 3, 
-    'New zealand' : 11, 'Japan' : 10, 'Germany' : 6, 'China' : 4,
-    'Switzerland' : 16, 'Russia' : 13, 'Ireland' : 8, 'Belgium' : 1
-}
 
-degree_dict = {
-    'Post Graduate' : 1, 'high school' : 2, 'Graduate' : 0
-}
-
-marital_status_dict = {
-    'single' : 3, 'married' : 2, 'divorced' : 0, 'in a relationship' : 1
-}
-
-category_dict = {
-    'actresses' : 1, 'actors' : 0, 'baseball-players' : 2, 'basketball-players' : 3,
-       'businesswomen' : 5, 'businessmen' : 4, 'ceos' : 6, 'comedians' : 7,
-       'entrepreneurs' : 9, 'directors' : 8, 'hockey-players' : 10, 'models' : 11,
-       'musicians' : 12, 'nfl-players' : 13, 'producers' : 14, 'rappers' : 15, 'singers' : 16,
-       'soccer-players' : 17, 'tv-personalities' : 18
-}
-
-gender_dict = {
-    'others' : 2, 'female' : 0, 'male' : 1
-}
+categoryEncoder = pickle.load(open('data/ML_models/categoryEncoder.pkl', 'rb'))
+degreeEncoder = pickle.load(open('data/ML_models/degreeEncoder.pkl', 'rb'))
+genderEncoder = pickle.load(open('data/ML_models/genderEncoder.pkl', 'rb'))
+nationalityEncoder = pickle.load(open('data/ML_models/nationalityEncoder.pkl', 'rb'))
+maritalStatusEncoder = pickle.load(open('data/ML_models/maritalStatusEncoder.pkl', 'rb'))
 
 # find nearest int from database --> take his image --> name --> select quote
-def find_image(value, dataframe) : 
-    min_diff, row_num = 99999999999, 0
-    for i in range(len(dataframe)) : 
-        if abs(dataframe.networth.iloc[i] - value) < min_diff : 
-            min_diff = abs(dataframe.networth.iloc[i] - value)
+def find_image(value, dataframe, category, country) : 
+    min_diff, row_num = sys.maxsize, 0
+    unavailableImage = [
+        'Derek Hough', 'Cloris Leachman', 'Vic Gundotra', 'Eric Koston', 
+        'Shepard Fairey', 'Bobby Baldwin', 'Ted Harbert', 'Dr. Cindy Trimm', 
+        'Jackee Harry'
+    ]
+    logging.info('Inside find_image ' + str(category) + str(country))
+    toCheckDf = dataframe[(dataframe.category == category)]
+
+    logging.debug(toCheckDf.head())
+    for i in range(len(toCheckDf)) : 
+        if abs(toCheckDf.networth.iloc[i] - value) < min_diff and (toCheckDf.Name.iloc[i] not in unavailableImage) : 
+            min_diff = abs(toCheckDf.networth.iloc[i] - value)
             row_num = i 
-    name, name_text = dataframe.Name.iloc[row_num] , ''
+
+    name, name_text = toCheckDf.Name.iloc[row_num] , ''
     for word in name.split() : 
         name_text += word.capitalize() + ' '
         
-    return dataframe.profile_pic.iloc[row_num], name_text, dataframe.category.iloc[row_num].capitalize()
+    return toCheckDf.profile_pic.iloc[row_num], name_text, toCheckDf.category.iloc[row_num].capitalize()
 
 app = Flask(__name__)
 
 @app.route('/', methods = ['GET'])
 def index() : 
     value = 'Predict your true worth using'
-    return render_template('index.html', text = value)
+    country = list(image_df.nationality.unique())
+    category = list(image_df.category.unique())
+    gender = list(image_df.gender.unique())
+    marital_status = list(image_df.marital_status.unique())
+    degree = list(image_df.Degree.unique())
+
+    return render_template(
+        'index.html', 
+        text = value, 
+        countryList = country, 
+        categoryList = category, 
+        genderList = gender, 
+        maritalStatusList = marital_status,
+        degreeList = degree
+        )
 
 @app.route('/predict', methods = ['POST'])
 def predict() : 
@@ -71,22 +83,45 @@ def predict() :
         degree = request.form['degree']
         relationship = request.form['relationship']
 
-        country = country_dict[country]
-        degree = degree_dict[degree]
-        relationship = marital_status_dict[relationship]
-        category = category_dict[category]
-        gender = gender_dict[gender]
+        if (age > 99) : 
+            age = age / (99 - 20) 
+            logging.warning("Age not within usual range! More")
+        elif age < 25 : 
+            age += 10 
+            logging.warning("Age not within usual range! Less")
 
-        to_predict = scaler.transform([[country, category, relationship, degree, gender]])
-        print(to_predict)
-        prediction = model.predict(to_predict)
-        print([age, country, category, relationship, degree, gender],prediction)
+        if len(name) == 0 : 
+            name = "Hi, "
+            logging.warning("Name not mentioned")
+      
+        countryEncoded = nationalityEncoder.transform([str(country)])[0]
+        degreeEncoded  = degreeEncoder.transform([str(degree)])[0]
+        relationshipEncoded  = maritalStatusEncoder.transform([str(relationship)])[0]
+        categoryEncoded  = categoryEncoder.transform([str(category)])[0]
+        genderEncoded  = genderEncoder.transform([str(gender)])[0]
+
+        logging.info('Encoding Done : ')
+        logging.debug('Country -->'+ str(country)) 
+        logging.debug('Deegree -->' + str(degree))
+        logging.debug('relationship -->' + str(relationship))
+        logging.debug('gender -->' + str(gender))
+
+        to_predict = scaler.transform([[
+            genderEncoded, categoryEncoded, degreeEncoded, relationshipEncoded, countryEncoded, age
+            ]])
+
+        prediction = np.exp(model.predict(to_predict))
+        logging.debug("final networth prediction "+ str(prediction))
 
         if prediction < 0 : 
             return render_template('index.html', prediction_value = 'some random quote')  
         else : 
-            return render_template('prediction.html', prediction_value = (find_image(prediction, image_df)), text = (name.capitalize(), int(prediction[0]))) 
-
+            return render_template(
+                'prediction.html',  
+                prediction_value = (find_image(prediction, image_df, category, country)), 
+                text = (name.capitalize(), round(int(prediction[0])))
+            ) 
+ 
     else : 
         return render_template('index.html', prediction_value = "invalid response")
  
