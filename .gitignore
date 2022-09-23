@@ -2,10 +2,37 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,flask
 
 data/
+ML_models/
+DecisionTree.pkl
+DecisionTreeLog.pkl
+KNeighborsRegressor.pkl
+KNeighborsRegressorLog.pkl
+RadiusNeighborsRegressorLog.pkl
+RidgeRegression.pkl
+RidgeRegressionLog.pkl
+SupportVectorRegressor.pkl
+SupportVectorRegressorLog.pkl
+XGBRegressorLog.pkl
+XGBRegressor.pkl
+
+scraper/
+*.py
+
+preprocessed_df.csv
+
 model_data.csv
 nation_mapping.csv
 raw_data.csv
+Rich.csv
 tofill.csv
+
+notebooks/
+__pycache__/
+*.pyc
+/models
+*.ipynb
+*.ipynb
+
 
 ### Flask ###
 instance/*
