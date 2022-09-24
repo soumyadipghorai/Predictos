@@ -15,11 +15,6 @@ SupportVectorRegressorLog.pkl
 XGBRegressorLog.pkl
 XGBRegressor.pkl
 
-scraper/
-*.py
-
-preprocessed_df.csv
-
 model_data.csv
 nation_mapping.csv
 raw_data.csv
@@ -33,6 +28,10 @@ __pycache__/
 *.ipynb
 *.ipynb
 
+scraper/
+*.py
+
+preprocessed_df.csv
 
 ### Flask ###
 instance/*
