@@ -127,7 +127,7 @@ python-dotenv==0.20.0
 # regex==2022.6.2
 requests==2.27.1
 requests-oauthlib==1.3.1
-# rich==12.5.1
+rich==12.5.1
 # rsa==4.8
 # s3transfer==0.5.2
 scikit-learn==1.0.2
