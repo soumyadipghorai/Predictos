@@ -1,25 +1,23 @@
-import sys
-import pickle
-import pandas as pd 
 import numpy as np
-import logging
-import emoji
-import random
+import pandas as pd 
 from rich.logging import RichHandler
+import sys, emoji, pickle, random, logging
 from sklearn.preprocessing import LabelEncoder
 from flask import Flask, render_template, request 
 
 FORMAT = "%(message)s"
 logging.basicConfig(
     level="NOTSET", format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
-)  # set level=20 or logging.INFO to turn of debug
+)  
 logger = logging.getLogger("rich")
 
 df = pd.read_csv('data/Rich.csv')
 image_df = pd.read_csv('data/preprocessed_df.csv')
+quotes_df = pd.read_csv('data/quoteDf.csv')
 model = pickle.load(open('data/ML_models/StackedModelLog.pkl', 'rb'))
 scaler = pickle.load(open('data/ML_models/StandardScaler.pkl', 'rb'))
 
+print(quotes_df.head())
 
 categoryEncoder = pickle.load(open('data/ML_models/categoryEncoder.pkl', 'rb'))
 degreeEncoder = pickle.load(open('data/ML_models/degreeEncoder.pkl', 'rb'))
@@ -27,29 +25,12 @@ genderEncoder = pickle.load(open('data/ML_models/genderEncoder.pkl', 'rb'))
 nationalityEncoder = pickle.load(open('data/ML_models/nationalityEncoder.pkl', 'rb'))
 maritalStatusEncoder = pickle.load(open('data/ML_models/maritalStatusEncoder.pkl', 'rb'))
 
-emojiList = ["💰","🥳","💶","💴","🪙","💷","👑","🔥", "💸", "🐸", "✨", "🥂", "💎"]
+emojiList = ["💰","🥳","💶","💴","🪙","💷","👑","🔥", "💸", "✨", "🥂", "💎"]
 
-# taken from forbes
-popularQuotes = [
-    ("It's how you deal with failure that determines how you achieve success.", "David Feherty"), 
-    ("An investment in knowledge pays the best interest.","Benjamin Franklin"),
-    ("Formal education will make you a living; self-education will make you a fortune.","Jim Rohn"), 
-    ("The real measure of your wealth is how much you'd be worth if you lost all your money.","Anonymous"), 
-    ("You must gain control over your money or the lack of it will forever control you.","Dave Ramsey"), 
-    ("Courage is being scared to death, but saddling up anyway.","John Wayne"), 
-    ("The successful warrior is the average man, with laser-like focus. ","Bruce Lee"), 
-    ("The question isn’t who is going to let me; it’s who is going to stop me.","Ayn Rand"), 
-    ("Screw it, Let’s do it!","Richard Branson"), 
-    ("As long as you’re going to be thinking anyway, think big.","Donald Trump"), 
-    ("A nickel ain't worth a dime anymore.","Yogi Berra"), 
-    ("Money is only a tool. It will take you wherever you wish, but it will not replace you as the driver.","Ayn Rand"), 
-    ("Money is a terrible master but an excellent servant.","P.T. Barnum"), 
-    ("I’m a great believer in luck, and I find the harder I work the more I have of it.","Thomas Jefferson"), 
-    ("Never spend your money before you have it.","Thomas Jefferson")
-]
 
 def generateQuote() : 
-    return popularQuotes[random.randint(0, len(popularQuotes)-1)]
+    randomIndex = random.randint(0, len(quotes_df)-1)
+    return quotes_df.quotes.iloc[randomIndex], quotes_df.author.iloc[randomIndex]
 
 # find nearest int from database --> take his image --> name --> select quote
 def find_image(value, dataframe, category, country) : 
@@ -57,7 +38,7 @@ def find_image(value, dataframe, category, country) :
     unavailableImage = [
         'Derek Hough', 'Cloris Leachman', 'Vic Gundotra', 'Eric Koston', 
         'Shepard Fairey', 'Bobby Baldwin', 'Ted Harbert', 'Dr. Cindy Trimm', 
-        'Jackee Harry', 'Tom Hiddleston', 'Karen Moses'
+        'Jackee Harry', 'Tom Hiddleston', 'Karen Moses', 'Rhys Ifans'
     ]
     logging.info('Inside find_image ' + str(category) + str(country))
     toCheckDf = dataframe[(dataframe.category == category)]
@@ -91,15 +72,6 @@ def index() :
     marital_status.sort()
     degree.sort()
 
-    # return render_template(
-    #     'index.html', 
-    #     text = value, 
-    #     countryList = country, 
-    #     categoryList = category, 
-    #     genderList = gender, 
-    #     maritalStatusList = marital_status,
-    #     degreeList = degree
-    #     )
     return render_template(
         'newIndex.html', 
         countryList = country, 
@@ -153,12 +125,8 @@ def predict() :
 
         if prediction < 0 : 
             return render_template('index.html', prediction_value = 'some random quote')  
+        
         else : 
-            # return render_template(
-            #     'prediction.html',  
-            #     prediction_value = (find_image(prediction, image_df, category, country)), 
-            #     text = (name.capitalize(), round(int(prediction[0])))
-            # ) 
             return render_template(
                 'newPrediction.html',  
                 prediction_value = (find_image(prediction, image_df, category, country)), 
