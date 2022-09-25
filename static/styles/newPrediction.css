@@ -4,10 +4,6 @@
     text-align: center;
 }
 
-.motivation{
-    margin-top:12%;
-}
-
 .prediction-text .Quote{
     font-family: 'Playfair Display', serif;
     font-size: 1.6vw;
@@ -36,15 +32,15 @@
     display: flex;
     justify-content: center;
 }
-.category{
-    font-size: 1.1vw;
-    font-family: 'Playfair Display', serif;
-    color: white;
-    padding: 1% 5% 1% 5%;
-    border-radius: 5px;
-    border: 0px;
-    box-shadow: rgba(23, 22, 22, 0.24) 0px 3px 8px;
-}
+    .category{
+        font-size: 1.1vw;
+        font-family: 'Playfair Display', serif;
+        color: white;
+        padding: 1% 5% 1% 5%;
+        border-radius: 5px;
+        border: 0px;
+        box-shadow: rgba(23, 22, 22, 0.24) 0px 3px 8px;
+    }
 
 @keyframes fade-left {
     0% {
@@ -67,7 +63,6 @@
     .input-section p{
         font-size: 2vw;
     }
-
     .name{
         font-size: 3vw;
     }
@@ -79,9 +74,6 @@
     }
     .prediction-text .Quote{
         font-size: 2.6vw;
-    }
-    footer{
-        text-align: center;
     }
 }
 
