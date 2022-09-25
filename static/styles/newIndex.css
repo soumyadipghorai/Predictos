@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Aref+Ruqaa+Ink&family=Playfair+Display&family=Poppins:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    color: #303030;
+}
+
+body{
+min-height:100%
+}
+
+.navbar{
+    display: flex;
+    justify-content: center;
+}
+
+.logo{
+    font-size: 1.6vw;
+    padding: 0.25%;
+    margin: 0.25%;
+}
+.logo-text{
+    font-family: 'Abyssinica SIL', serif;
+    font-weight: 800;
+}
+
+.main-section{
+    margin: 3%;
+    padding: 3%;
+    max-height: 85%;
+}
+
+.input-section{
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+}
+
+.input-section h1{
+    font-size: 3.6vw;
+    font-weight: 800;
+}
+
+.input-section p{
+    font-size: 1.2vw;
+    font-weight: 500;
+}
+
+    .color-text:hover{
+        text-shadow: #11d1ce 0px 3px 8px;
+        transition: 0.2s linear;
+        cursor: pointer;
+    }
+
+form{
+    margin: 2% 0% 2% 0%;
+    padding: 2% 0% 2% 0%;
+}
+
+label{
+    padding: 1% 2%;
+} 
+
+input{
+    padding: 0;
+    border-radius: 5px;
+    border: 0.2px solid #e6e3ff;
+}
+select{
+    padding: 0% 2% 0% 2%;
+    border-radius: 5px;
+    font-weight: 400;
+    border: 0.2px solid #e6e3ff;
+}
+
+option{
+    text-transform: capitalize;
+}
+
+.input-options{
+    margin: 1% 0% 1% 0%;
+    padding: 1% 0% 1% 0%;
+}
+
+button{
+    margin-top: 2%;
+    color: white;
+    padding: 1% 6% 1% 6%;
+    border-radius: 5px;
+    border: 0px;
+    margin-right: 20px;
+    box-shadow: rgba(23, 22, 22, 0.24) 0px 3px 8px;
+}
+
+    button:hover{
+        box-shadow: none;
+        cursor: pointer;
+        transition: 0.1s linear;
+    }
+
+.button-class{
+    background: #f09433; 
+    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+    background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+}
+
+footer{
+    text-align: center;
+    font-family: 'Aref Ruqaa Ink', serif;
+}
+
+.repo{
+    display: flex;
+    justify-content: center;
+}
+
+    .repo img{
+        width: 25px;
+    }
+
+    .git{
+        padding: 5px;
+        border-radius: 5px;
+        border: 0.2px solid #e6e3ff;
+    }
+        .git:hover{
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            transition: 0.2s linear;
+        }
+
+
+/* text animation  */
+.animate-charcter
+{
+   text-transform: uppercase;
+    background-image: linear-gradient(
+        -225deg,
+        #231557 0%,
+        #44107a 29%,
+        #ff1361 67%,
+        #fff800 100%
+    );
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    display: inline-block;
+}
+
+@keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
+}
+
+
+@media screen and (max-width : 948px){
+    .container{
+        min-width: 95%;
+    }
+    .input-section h1{
+        font-size: 4.6vw;
+    }
+    .input-section p{
+        font-size: 2vw;
+    }
+    .logo{
+        font-size: 2.8vw;
+    }
+}
+
+@media screen and (max-width : 480px){
+    .logo img{
+        max-width: 100px;
+    }
+    .container{
+        margin: 0;
+        padding: 0;
+    }
+    .main-section{
+        margin: 1%;
+        padding: 1%;
+    }
+    .input-section h1{
+        font-size: 6.8vw;
+        margin-top: 3%;
+    }
+
+    .logo{
+        font-size: 4.8vw;
+    }
+
+    input, select{
+        padding: 1%;
+        font-size: 3.3vw;
+    }
+
+    .input-section p{
+        font-size: 3.5vw;
+    }
+    footer{
+        font-size: 3vw;
+    }
+}

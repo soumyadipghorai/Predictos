@@ -3,8 +3,11 @@ import pickle
 import pandas as pd 
 import numpy as np
 import logging
+import emoji
+import random
 from rich.logging import RichHandler
 from flask import Flask, render_template, request 
+from quotes import generateQuote
 
 FORMAT = "%(message)s"
 logging.basicConfig(
@@ -27,13 +30,15 @@ genderEncoder = pickle.load(open('data/ML_models/genderEncoder.pkl', 'rb'))
 nationalityEncoder = pickle.load(open('data/ML_models/nationalityEncoder.pkl', 'rb'))
 maritalStatusEncoder = pickle.load(open('data/ML_models/maritalStatusEncoder.pkl', 'rb'))
 
+emojiList = ["💰","🥳","💶","💴","🪙","💷","👑","🔥", "💸", "🐸"]
+
 # find nearest int from database --> take his image --> name --> select quote
 def find_image(value, dataframe, category, country) : 
     min_diff, row_num = sys.maxsize, 0
     unavailableImage = [
         'Derek Hough', 'Cloris Leachman', 'Vic Gundotra', 'Eric Koston', 
         'Shepard Fairey', 'Bobby Baldwin', 'Ted Harbert', 'Dr. Cindy Trimm', 
-        'Jackee Harry'
+        'Jackee Harry', 'Tom Hiddleston'
     ]
     logging.info('Inside find_image ' + str(category) + str(country))
     toCheckDf = dataframe[(dataframe.category == category)]
@@ -61,15 +66,29 @@ def index() :
     marital_status = list(image_df.marital_status.unique())
     degree = list(image_df.Degree.unique())
 
+    country.sort()
+    category.sort()
+    gender.sort()
+    marital_status.sort()
+    degree.sort()
+
+    # return render_template(
+    #     'index.html', 
+    #     text = value, 
+    #     countryList = country, 
+    #     categoryList = category, 
+    #     genderList = gender, 
+    #     maritalStatusList = marital_status,
+    #     degreeList = degree
+    #     )
     return render_template(
-        'index.html', 
-        text = value, 
+        'newIndex.html', 
         countryList = country, 
         categoryList = category, 
         genderList = gender, 
         maritalStatusList = marital_status,
         degreeList = degree
-        )
+    )
 
 @app.route('/predict', methods = ['POST'])
 def predict() : 
@@ -116,10 +135,21 @@ def predict() :
         if prediction < 0 : 
             return render_template('index.html', prediction_value = 'some random quote')  
         else : 
+            # return render_template(
+            #     'prediction.html',  
+            #     prediction_value = (find_image(prediction, image_df, category, country)), 
+            #     text = (name.capitalize(), round(int(prediction[0])))
+            # ) 
             return render_template(
-                'prediction.html',  
+                'newPrediction.html',  
                 prediction_value = (find_image(prediction, image_df, category, country)), 
-                text = (name.capitalize(), round(int(prediction[0])))
+                text = (
+                    name.capitalize(), 
+                    round(int(prediction[0])), 
+                    emoji.emojize(emojiList[random.randint(0, len(emojiList)-1)])
+                    ),
+                quote = generateQuote()[0],
+                author = generateQuote()[1]
             ) 
  
     else : 
