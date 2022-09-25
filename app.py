@@ -27,8 +27,9 @@ genderEncoder = pickle.load(open('data/ML_models/genderEncoder.pkl', 'rb'))
 nationalityEncoder = pickle.load(open('data/ML_models/nationalityEncoder.pkl', 'rb'))
 maritalStatusEncoder = pickle.load(open('data/ML_models/maritalStatusEncoder.pkl', 'rb'))
 
-emojiList = ["💰","🥳","💶","💴","🪙","💷","👑","🔥", "💸", "🐸"]
+emojiList = ["💰","🥳","💶","💴","🪙","💷","👑","🔥", "💸", "🐸", "✨", "🥂", "💎"]
 
+# taken from forbes
 popularQuotes = [
     ("It's how you deal with failure that determines how you achieve success.", "David Feherty"), 
     ("An investment in knowledge pays the best interest.","Benjamin Franklin"),
@@ -39,7 +40,12 @@ popularQuotes = [
     ("The successful warrior is the average man, with laser-like focus. ","Bruce Lee"), 
     ("The question isn’t who is going to let me; it’s who is going to stop me.","Ayn Rand"), 
     ("Screw it, Let’s do it!","Richard Branson"), 
-    ("As long as you’re going to be thinking anyway, think big.","Donald Trump")
+    ("As long as you’re going to be thinking anyway, think big.","Donald Trump"), 
+    ("A nickel ain't worth a dime anymore.","Yogi Berra"), 
+    ("Money is only a tool. It will take you wherever you wish, but it will not replace you as the driver.","Ayn Rand"), 
+    ("Money is a terrible master but an excellent servant.","P.T. Barnum"), 
+    ("I’m a great believer in luck, and I find the harder I work the more I have of it.","Thomas Jefferson"), 
+    ("Never spend your money before you have it.","Thomas Jefferson")
 ]
 
 def generateQuote() : 
@@ -51,7 +57,7 @@ def find_image(value, dataframe, category, country) :
     unavailableImage = [
         'Derek Hough', 'Cloris Leachman', 'Vic Gundotra', 'Eric Koston', 
         'Shepard Fairey', 'Bobby Baldwin', 'Ted Harbert', 'Dr. Cindy Trimm', 
-        'Jackee Harry', 'Tom Hiddleston'
+        'Jackee Harry', 'Tom Hiddleston', 'Karen Moses'
     ]
     logging.info('Inside find_image ' + str(category) + str(country))
     toCheckDf = dataframe[(dataframe.category == category)]
