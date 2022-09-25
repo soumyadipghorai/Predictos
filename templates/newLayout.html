@@ -23,6 +23,17 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename = 'images/favicon/apple-touch-icon.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename = 'images/favicon/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename = 'images/favicon/favicon-16x16.png')}}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6M9XS7C9EM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-6M9XS7C9EM');
+    </script>
+    
     {% block link %} {% endblock %}
 </head>
 <body>
