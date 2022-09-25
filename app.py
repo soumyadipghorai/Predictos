@@ -6,17 +6,14 @@ import logging
 import emoji
 import random
 from rich.logging import RichHandler
+from sklearn.preprocessing import LabelEncoder
 from flask import Flask, render_template, request 
-from quotes import generateQuote
 
 FORMAT = "%(message)s"
 logging.basicConfig(
     level="NOTSET", format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
 )  # set level=20 or logging.INFO to turn of debug
 logger = logging.getLogger("rich")
-
-
-from sklearn.preprocessing import LabelEncoder
 
 df = pd.read_csv('data/Rich.csv')
 image_df = pd.read_csv('data/preprocessed_df.csv')
@@ -31,6 +28,22 @@ nationalityEncoder = pickle.load(open('data/ML_models/nationalityEncoder.pkl', '
 maritalStatusEncoder = pickle.load(open('data/ML_models/maritalStatusEncoder.pkl', 'rb'))
 
 emojiList = ["💰","🥳","💶","💴","🪙","💷","👑","🔥", "💸", "🐸"]
+
+popularQuotes = [
+    ("It's how you deal with failure that determines how you achieve success.", "David Feherty"), 
+    ("An investment in knowledge pays the best interest.","Benjamin Franklin"),
+    ("Formal education will make you a living; self-education will make you a fortune.","Jim Rohn"), 
+    ("The real measure of your wealth is how much you'd be worth if you lost all your money.","Anonymous"), 
+    ("You must gain control over your money or the lack of it will forever control you.","Dave Ramsey"), 
+    ("Courage is being scared to death, but saddling up anyway.","John Wayne"), 
+    ("The successful warrior is the average man, with laser-like focus. ","Bruce Lee"), 
+    ("The question isn’t who is going to let me; it’s who is going to stop me.","Ayn Rand"), 
+    ("Screw it, Let’s do it!","Richard Branson"), 
+    ("As long as you’re going to be thinking anyway, think big.","Donald Trump")
+]
+
+def generateQuote() : 
+    return popularQuotes[random.randint(0, len(popularQuotes)-1)]
 
 # find nearest int from database --> take his image --> name --> select quote
 def find_image(value, dataframe, category, country) : 
