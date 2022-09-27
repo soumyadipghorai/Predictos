@@ -1,22 +1,22 @@
 <h1 align='center'> Predictos </h1>
 <h2 align='center'> Predict your potential networth using Ai </h2>
 
-So I have been playing those fun `Facebook games` for a while where they say you'll get married in this year or you'll have this many kids bla bla. But noboady gives you the reason why? I think these are pretty random. So thought of building a fun game using `Machine Learning`, and provide **Data Driven** results.
+So I have been playing those fun `Facebook games` for a while where they say you'll get married in this year or you'll have this many kids or this much money bla bla. But noboady gives you the reason why? I think these are pretty random. So thought of building a fun game using `Machine Learning`, and provide some **Data Driven** results.
 
 <p align='center'> 
-    <img alt = 'home_imge' width = 550px src = 'demo_image/desktop_home.png'>
+    <img src='demo_image/appearance.gif' alt = 'header_gif' style = "max-width:600px;">
 </p>
 
 ----------------------------
 
 ## Approach : 
 
-* I have collected data of top 100 richest persons in different fields. I have used `BeautifulSoup` to scrape [therichest.com](https://www.therichest.com/top-lists/top-100-richest).
-* after collecting the data done some data cleaning and feature engineering on raw data. 
-* fitted multiple regression model and used hyper parameter tuning to get the best result. 
-* saved the model in a `.sav` file and.
-* later used the same model in the `flask app` 
-
+* I have collected data of richest persons in 100+ different fields from more than 100 countries. I have used `BeautifulSoup` to scrape [therichest.com](https://www.therichest.com/top-lists/top-100-richest).
+* After collecting the data done some data cleaning and feature engineering on raw data. 
+* Fitted multiple regression model and used hyper parameter tuning to get the best result. 
+* Saved the model in a `.pkl` file and.
+* Later used the same model in the `flask app` and for frontend used `HTML, CSS` and `Bootstrap`.
+* Deployed the whole project on ``Heroku` and used `Google Analytics` for tracking users.
 ------------------------------
 
 ## How to run? 
